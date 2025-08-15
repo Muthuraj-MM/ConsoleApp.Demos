@@ -1,12 +1,16 @@
 ﻿// Declare Variables
 
-string name = string.Empty;
+string firstName = string.Empty; 
+string lastName = string.Empty;
 int age = 0;
 int retirementAge = 58; // Example retirement age
 
 // Prompt for User Input
-Console.WriteLine("Enter your name:");
-name = Console.ReadLine() ?? string.Empty; // Read user input and handle null
+Console.WriteLine("Enter your first name:");
+firstName = Console.ReadLine() ?? string.Empty; // Read user input and handle null
+
+Console.WriteLine("Enter your last name:");
+lastName = Console.ReadLine() ?? string.Empty; // Read user input and handle null
 
 Console.WriteLine("Enter your age:");
 
@@ -19,6 +23,6 @@ age = Convert.ToInt32(ageInput); // Convert input to integer
 int retirementYearsLeft = retirementAge - age;
 
 // Output the result
-Console.WriteLine($"Full Name: {name}");
+Console.WriteLine($"Full Name: {firstName} {lastName}");
 Console.WriteLine($"Age: {age}");
 Console.WriteLine($"retirementYearsLeft: { retirementYearsLeft }");
