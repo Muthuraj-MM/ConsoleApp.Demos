@@ -4,6 +4,9 @@ string firstName = string.Empty;
 string lastName = string.Empty;
 int age = 0;
 int retirementAge = 58; // Example retirement age
+decimal salary = 0;
+char gender = char.MinValue; // Default value for char
+Boolean isEmployed = false; // Default value for boolean
 
 // Prompt for User Input
 Console.WriteLine("Enter your first name:");
@@ -18,6 +21,14 @@ Console.WriteLine("Enter your age:");
 string ageInput = Console.ReadLine() ?? "0"; // Read user input and handle null
 age = Convert.ToInt32(ageInput); // Convert input to integer
 
+Console.WriteLine("Enter your salary:");
+salary = Convert.ToDecimal(Console.ReadLine());
+
+Console.WriteLine("Enter your gender (M/F):");
+gender = Convert.ToChar(Console.ReadLine()); 
+
+Console.WriteLine("I'm working (true/false):");
+isEmployed = Convert.ToBoolean(Console.ReadLine());
 
 //Process the data
 int retirementYearsLeft = retirementAge - age;
@@ -25,4 +36,7 @@ int retirementYearsLeft = retirementAge - age;
 // Output the result
 Console.WriteLine($"Full Name: {firstName} {lastName}");
 Console.WriteLine($"Age: {age}");
+Console.WriteLine($"Salary: {salary}");
+Console.WriteLine($"Gender: {gender}");
+Console.WriteLine($"I'm employed: {isEmployed}");
 Console.WriteLine($"retirementYearsLeft: { retirementYearsLeft }");
