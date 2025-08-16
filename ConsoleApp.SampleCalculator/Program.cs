@@ -1,47 +1,85 @@
-﻿Console.WriteLine("Welcome to the Sample Calculator Console Application!");
+﻿int operation = 0;
+int firstNumber = 0;
+int secondNumber = 0;
 
-//Get user input for the operation
-Console.Write("Enter operation (+, -, *, /): ");
-char operation = Console.ReadKey().KeyChar;
 
-//Get user input for two numbers
-Console.WriteLine(); // Move to the next line after reading the operation
-Console.Write("Enter first number: ");
-double firstNumber = Convert.ToDouble(Console.ReadLine());
-
-Console.Write("Enter second number: ");
-double secondNumber = Convert.ToDouble(Console.ReadLine());
-
-Console.WriteLine(); // Move to the next line after reading the operation
-
-//Perform the calculation based on the operation
-double result;
-switch (operation)
+while (operation != -1)
 {
-    case '+':
-        result = firstNumber + secondNumber;
-        Console.WriteLine($"Result: {firstNumber} + {secondNumber} = {result}");
-        break;
-    case '-':
-        result = firstNumber - secondNumber;
-        Console.WriteLine($"Result: {firstNumber} - {secondNumber} = {result}");
-        break;
-    case '*':
-        result = firstNumber * secondNumber;
-        Console.WriteLine($"Result: {firstNumber} * {secondNumber} = {result}");
-        break;
-    case '/':
-        if (secondNumber != 0)
+    try
+    {
+        Console.Clear();
+        Console.WriteLine("Welcome to the Sample Calculator Console Application!");
+        Console.WriteLine("Enter operation (-1 to exit program) : ");
+        Console.WriteLine("1. Addition");
+        Console.WriteLine("2. Subtraction");
+        Console.WriteLine("3. Multiplication");
+        Console.WriteLine("4. Division");
+        Console.WriteLine("5. Fibonacci Series");
+        operation = Convert.ToInt32(Console.ReadLine());
+
+        if (operation == -1)
         {
-            result = firstNumber / secondNumber;
-            Console.WriteLine($"Result: {firstNumber} / {secondNumber} = {result}");
+            Console.WriteLine("Exiting the program...");
+            break; // Exit the loop if user chooses to exit
         }
-        else
+        Console.Write("Enter first number: ");
+        firstNumber = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter second number: ");
+        secondNumber = Convert.ToInt32(Console.ReadLine());
+
+        //Perform the calculation based on the operation
+        int result = 0;
+        switch (operation)
         {
-            Console.WriteLine("Error: Division by zero is not allowed.");
+            case 1:
+                result = firstNumber + secondNumber;
+                Console.WriteLine($"Result: {firstNumber} + {secondNumber} = {result}");
+                break;
+            case 2:
+                result = firstNumber - secondNumber;
+                Console.WriteLine($"Result: {firstNumber} - {secondNumber} = {result}");
+                break;
+            case 3:
+                result = firstNumber * secondNumber;
+                Console.WriteLine($"Result: {firstNumber} * {secondNumber} = {result}");
+                break;
+            case 4:
+                result = firstNumber / secondNumber;
+                Console.WriteLine($"Result: {firstNumber} / {secondNumber} = {result}");                
+                break;
+            case 5:
+                for (int i = firstNumber; i <= secondNumber; i++)
+                {
+                    result += i;
+                }
+                Console.WriteLine($"Fibonacci Series from {firstNumber} to {secondNumber}:{result}");
+                break;
+            default:
+                throw new Exception("Invalid operation selected. Please choose a valid operation.");                     
         }
-        break;
-    default:
-        Console.WriteLine("Error: Invalid operation. Please enter one of +, -, *, /.");
-        break;
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("Error: Please enter a valid number for the operation.");
+    }
+    catch (OverflowException)
+    {
+        Console.WriteLine("Error: The number entered is too large or too small.");
+    }
+    catch (DivideByZeroException ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");      
+    }
+    finally
+    {
+        Console.WriteLine("Press Enter To Continue");
+        Console.ReadLine();
+    }
 }
+Console.WriteLine("Thank you for using the Sample Calculator Console Application!");
+// Exit the program
